@@ -1,4 +1,5 @@
 #include "operacoes.h"
+#include "conversoes.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -13,8 +14,8 @@ int executar_operacao(const char *a_str, const char *b_str, int base, char op, i
             b = binario_para_decimal_str(b_str);
             break; 
         case 10:
-            a = decimal_para_decimal(a_str); 
-            b = decimal_para_decimal(b_str);
+            a = atoi(a_str);
+            b = atoi(b_str);
             break;
         case 16:
             a = hex_para_decimal(a_str); 

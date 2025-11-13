@@ -1,0 +1,4 @@
+[1] Base 10: 101 C decimal->bin => 5
+[2] Base 16: 1C C ->dec => 28
+[3] Base 2: 5 * 2 => 10
+[4] Base 10: 1010 C decimal->bin => 10

@@ -2,19 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void limpar_tela(void){
-    system("cls || clear");
+// Limpa a tela no Windows ou Linux
+void limpar_tela() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
 
-void pausar(void){
-    int c; 
-    printf("\n Pressione ENTER para continuar..."); 
-    while((c = getchar() != '\n' && c != EOF)){} //Uso de IA
-    getchar();
-}
-
-void mostrar_cabecalho(void){
-    printf(BLUE "===========================================\n" RESET);
-    printf(BLUE "     CALCULADORA BINÁRIA & HEXADECIMAL\n" RESET);
-    printf(BLUE "===========================================\n" RESET);
+// Mostra o cabeçalho da calculadora
+void mostrar_cabecalho() {
+    printf(GREEN "=============================\n");
+    printf("   CALCULADORA DE BASES\n");
+    printf("=============================\n" RESET);
 }
