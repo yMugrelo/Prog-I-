@@ -111,7 +111,7 @@ int historico_salvar_txt(const Historico *h, const char *filename) {
 
     for (size_t i = 0; i < h->tamanho; ++i) {
         const Operacao *it = &h->itens[i];
-        // Exemplo de linha: [1] Base 10: 15 C 7 => 22
+        // Exemplos de linha: [1] Base 10: 15 C 7 => 22
         // Mas salvamos de forma legível: índice, base, a_str, op, b_str, resultado
         fprintf(f, "[%zu] Base %d: %s %c %s => %d\n",
                 i + 1,
