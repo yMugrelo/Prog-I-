@@ -9,6 +9,26 @@
 #include "historico.h"
 #include "utils.h"
 
+
+
+
+void limpar_tela() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+// ---- PAUSA REAL OFICIAL (LIMPA BUFFER + ESPERA ENTER) ----
+void pausar() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {} // limpa buffer
+    printf("\nPressione ENTER para continuar...");
+    getchar();
+}
+// -----------------------------------------------------------
+
 int main(void) {
     Historico hist;
     historico_init(&hist);
@@ -30,7 +50,7 @@ int main(void) {
         printf("8. Salvar txt\n");
         printf("0. Sair\n" RESET);
         printf("Escolha uma opção: ");
-        if (scanf("%d", &opcao) != 1) { //IA ajudou a criar uma protecao simples 
+        if (scanf("%d", &opcao) != 1) { 
             int c; while ((c = getchar()) != '\n' && c != EOF) {}
             opcao = -1;
             continue;
@@ -45,6 +65,8 @@ int main(void) {
                 printf(GREEN "Histórico salvo em 'historico.bin'\n" RESET);
             else
                 printf(RED "Falha ao salvar histórico\n" RESET);
+
+            pausar();
             break;
         }
         else if (opcao == 1) {
@@ -53,7 +75,7 @@ int main(void) {
             scanf("%d", &num);
             char *s = decimal_para_bin_str(num);
             printf("Binário: %s\n", s);
-            historico_add(&hist, 10, s, "decimal->bin", 'C', num); // exemplo de registro (base 10 para info)
+            historico_add(&hist, 10, s, "decimal->bin", 'C', num);
             free(s);
         }
         else if (opcao == 2) {
@@ -118,7 +140,9 @@ int main(void) {
             }
         }
         else if (opcao == 6) {
-            historico_print(&hist);
+            historico_print(&hist); 
+            pausar();  // <-- AQUI resolve o problema do histórico sumir
+            continue;
         }
         else if (opcao == 7) {
             if (historico_salvar_bin(&hist, "historico.bin"))
@@ -132,7 +156,6 @@ int main(void) {
             else
                 printf(RED "Falha ao salvar histórico em texto\n" RESET);
         }
-
         else {
             printf(RED "Opção inválida!\n" RESET);
         }

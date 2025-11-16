@@ -2,6 +2,7 @@
 #define UTILS_H
 
 void pausar();
+void limpar_tela();
 
 
 
