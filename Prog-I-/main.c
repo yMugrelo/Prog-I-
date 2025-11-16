@@ -1,4 +1,3 @@
-// main.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,9 +8,6 @@
 #include "historico.h"
 #include "utils.h"
 
-
-
-
 void limpar_tela() {
 #ifdef _WIN32
     system("cls");
@@ -20,20 +16,17 @@ void limpar_tela() {
 #endif
 }
 
-// ---- PAUSA REAL OFICIAL (LIMPA BUFFER + ESPERA ENTER) ----
 void pausar() {
     int c;
-    while ((c = getchar()) != '\n' && c != EOF) {} // limpa buffer
+    while ((c = getchar()) != '\n' && c != EOF) {}
     printf("\nPressione ENTER para continuar...");
     getchar();
 }
-// -----------------------------------------------------------
 
 int main(void) {
     Historico hist;
     historico_init(&hist);
 
-    // tenta carregar histórico (se existir)
     historico_carregar_bin(&hist, "historico.bin");
 
     int opcao = -1;
@@ -48,8 +41,10 @@ int main(void) {
         printf("6. Mostrar histórico\n");
         printf("7. Salvar histórico em arquivo\n");
         printf("8. Salvar txt\n");
+        printf("9. Apagar histórico COMPLETO\n");  
         printf("0. Sair\n" RESET);
         printf("Escolha uma opção: ");
+
         if (scanf("%d", &opcao) != 1) { 
             int c; while ((c = getchar()) != '\n' && c != EOF) {}
             opcao = -1;
@@ -140,8 +135,8 @@ int main(void) {
             }
         }
         else if (opcao == 6) {
-            historico_print(&hist); 
-            pausar();  // <-- AQUI resolve o problema do histórico sumir
+            historico_print(&hist);
+            pausar();
             continue;
         }
         else if (opcao == 7) {
@@ -155,6 +150,10 @@ int main(void) {
                 printf(GREEN "Histórico salvo como texto em 'historico.txt'\n" RESET);
             else
                 printf(RED "Falha ao salvar histórico em texto\n" RESET);
+        }
+        else if (opcao == 9) {  
+            historico_limpar(&hist);
+            printf(GREEN "Histórico apagado com sucesso!\n" RESET);
         }
         else {
             printf(RED "Opção inválida!\n" RESET);

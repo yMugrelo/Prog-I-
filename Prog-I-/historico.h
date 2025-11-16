@@ -22,8 +22,9 @@ void historico_init(Historico *h); //Ajuda da IA na criacao das funcoes para tra
 void historico_free(Historico *h);
 int historico_add(Historico *h, int base, const char *a, const char *b, char op, int resultado);
 
-int historico_salvar_bin(Historico *h, const char *filename);
+int historico_salvar_bin(const Historico *h, const char *filename);
 int historico_carregar_bin(Historico *h, const char *filename); 
 int historico_salvar_txt(const Historico *h, const char *filename);
 void historico_print(const Historico *h);
+void historico_limpar(Historico *h);
 #endif

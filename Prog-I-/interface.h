@@ -7,7 +7,7 @@
 #define YELLOW  "\033[33m"
 #define RESET   "\033[0m"
 
-void limpar_tela();
+
 void mostrar_cabecalho();
 
 #endif
