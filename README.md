@@ -1,203 +1,176 @@
-📘 Calculadora Multibase em C
+# Calculadora Multibase em C  
 Conversor e Calculadora em Decimal, Binário e Hexadecimal
 
-Autores: Murilo Aba e Murilo Rosa de Paula
-Professores: Maurício M. Arimoto e Felipe H. Manfio
+Autores: Murilo Aba e Murilo Rosa de Paula  
+Professores: Maurício M. Arimoto e Felipe H. Manfio  
 Disciplina: Programação I – 2025
 
-📌 Sobre o Projeto
+---
+
+## Sobre o Projeto
 
 Este projeto implementa uma calculadora multibase desenvolvida em linguagem C, capaz de:
 
-Converter números entre decimal ⇄ binário
-
-Converter números entre decimal ⇄ hexadecimal
-
-Realizar operações matemáticas (+, –, *, /) em binário ou hexadecimal
-
-Registrar automaticamente todas as operações em um histórico dinâmico
-
-Salvar e carregar o histórico em arquivos texto ou binários
+- Converter números entre decimal ⇄ binário
+- Converter números entre decimal ⇄ hexadecimal
+- Realizar operações matemáticas (+, –, *, /) em binário ou hexadecimal
+- Registrar automaticamente todas as operações em um histórico dinâmico
+- Salvar e carregar o histórico em arquivos texto ou binários
 
 O foco do trabalho é demonstrar domínio sobre:
 
-Funções e modularização
+- Funções e modularização  
+- Structs  
+- Ponteiros  
+- Alocação dinâmica (malloc / realloc)  
+- Manipulação de arquivos texto/binário  
+- Organização e boas práticas  
+- Uso ético e crítico de IA durante o desenvolvimento  
 
-Structs
+---
 
-Ponteiros
+## Funcionalidades
 
-Alocação dinâmica (malloc / realloc)
+### Conversões
+- Decimal → Binário  
+- Decimal → Hexadecimal  
+- Binário → Decimal  
+- Hexadecimal → Decimal  
 
-Manipulação de arquivos texto/binário
+### Operações matemáticas
+Aceita entrada em base 2 e base 16. O sistema converte tudo para decimal, realiza a operação e exibe o resultado em:
 
-Organização e boas práticas
+- Decimal  
+- Binário  
+- Hexadecimal  
 
-Uso ético e crítico de IA durante o desenvolvimento
+Operações disponíveis:
+- Soma  
+- Subtração  
+- Multiplicação  
+- Divisão (com tratamento de erro para divisão por zero)
 
-⚙️ Funcionalidades
-✔ Conversões
+### Histórico de operações
+- Armazenamento dinâmico usando realloc  
+- Exibição completa do histórico  
+- Salvamento em arquivo binário (.bin)  
+- Salvamento em arquivo texto (.txt)  
+- Carregamento automático ao iniciar o programa  
 
-Decimal → Binário
+---
 
-Decimal → Hexadecimal
+## Estrutura do Código
 
-Binário → Decimal
+O projeto é modularizado da seguinte forma:
 
-Hexadecimal → Decimal
-
-✔ Operações matemáticas em múltiplas bases
-
-Aceita entrada em base 2 ou base 16, convertendo corretamente para decimal para operar:
-
-Soma
-
-Subtração
-
-Multiplicação
-
-Divisão (com tratamento de erro para divisão por zero)
-
-Após o cálculo, o resultado é mostrado em:
-
-Decimal
-
-Binário
-
-Hexadecimal
-
-✔ Histórico inteligente
-
-Cada operação realizada é armazenada em um vetor dinâmico, permitindo:
-
-Adicionar novas operações com realocação automática
-
-Exibir todo o histórico
-
-Salvar o histórico como arquivo .bin
-
-Salvar o histórico como arquivo .txt
-
-Carregar automaticamente o histórico ao iniciar o programa
-
-🧱 Estrutura do Código
-
-O projeto é modularizado em vários arquivos, cada um responsável por uma parte clara do sistema:
-
+```
 main.c
 interface.c / interface.h
 utils.c / utils.h
 conversoes.c / conversoes.h
 operacoes.c / operacoes.h
 historico.c / historico.h
+```
 
-🗂️ Resumo das responsabilidades
-Arquivo	Função
-main.c	Loop principal do programa e menu
-interface.c	Cabeçalho, formatação e interação visual
-utils.c	Funções auxiliares (limpar tela, pausar, etc.)
-conversoes.c	Funções de conversão entre bases
-operacoes.c	Soma, subtração, multiplicação e divisão entre bases
-historico.c	Registro dinâmico das operações + salvar e carregar arquivos
-.h	Define structs, funções e contratos de cada módulo
+### Resumo das responsabilidades
 
+| Arquivo | Função |
+|--------|--------|
+| main.c | Loop principal e menu |
+| interface.c | Interface textual e exibição |
+| utils.c | Funções auxiliares (limpar tela, pausar etc.) |
+| conversoes.c | Conversões entre bases |
+| operacoes.c | Implementação das operações matemáticas |
+| historico.c | Registro dinâmico + salvar/carregar histórico |
 
-🚀 Como Compilar
+---
 
-No Linux: gcc *.c -Wall -Wextra -o calculadora
+## Como Compilar
 
-▶️ Como Executar
+No Linux:
+
+```
+gcc *.c -Wall -Wextra -o calculadora
+```
+
+---
+
+## Como Executar
+
+```
 ./calculadora
+```
 
-O menu será exibido automaticamente. Basta escolher as opções numéricas:
-1. Converter Decimal → Binário
-2. Converter Decimal → Hexadecimal
-3. Converter Binário → Decimal
-4. Converter Hexadecimal → Decimal
-5. Operações matemáticas
-6. Mostrar histórico
-7. Salvar histórico (.bin)
-8. Salvar histórico (.txt)
-0. Sair
+O menu interativo será exibido automaticamente, permitindo escolher:
 
+1. Converter Decimal → Binário  
+2. Converter Decimal → Hexadecimal  
+3. Converter Binário → Decimal  
+4. Converter Hexadecimal → Decimal  
+5. Operações matemáticas  
+6. Mostrar histórico  
+7. Salvar histórico (.bin)  
+8. Salvar histórico (.txt)  
+0. Sair  
 
-📂 Arquivos Gerados pelo Programa
+---
 
-historico.bin → salva o histórico em binário (carregado automaticamente ao iniciar)
+## Arquivos Gerados pelo Programa
 
-historico.txt → salva o histórico em formato legível
+- `historico.bin` → histórico salvo em formato binário  
+- `historico.txt` → histórico salvo em texto legível  
 
-🧠 Uso de IA no Projeto (Contexto para o relatório)
+---
 
-Durante o desenvolvimento utilizamos IA generativa de forma ética e crítica, principalmente para:
+## Uso de IA no Projeto (para o relatório)
 
-Explicações conceituais (ex.: diferença entre malloc e realloc)
+Durante o desenvolvimento utilizamos IA generativa para:
 
-Identificação de erros de compilação e linking
+- Explicações conceituais (ex.: malloc, ponteiros, modularização)
+- Identificação de erros de compilação
+- Sugestões de organização
+- Reescrita de trechos já compreendidos
+- Revisão de código
 
-Reestruturação de módulos
+Todo o código final foi revisado linha a linha pela dupla para garantir:
 
-Geração de exemplos e melhorias de estilo
+- autoria  
+- compreensão  
+- coerência  
+- preparo para a apresentação  
 
-Reescrita de partes do código já compreendidas
+---
 
-O código final foi revisado linha a linha pela dupla para garantir:
+## Testes Incluídos
 
-autoria
+O repositório contém:
 
-compreensão
+- Exemplos de entrada  
+- Exemplos de saída  
+- Arquivo de histórico para verificação  
 
-coerência com o conteúdo da disciplina
+---
 
-pleno domínio para apresentação e arguição
+## Apresentação do Trabalho
 
-🧪 Testes
+Durante a apresentação (7–10 minutos), demonstraremos:
 
-O repositório inclui:
+1. Funcionamento completo da calculadora  
+2. Justificativa técnica da implementação  
+3. Papel da IA  
+4. Explicação de módulos específicos  
+5. Domínio total do código e das decisões tomadas  
 
-Exemplos de entrada
+---
 
-Exemplos de saída
+## Prazos
 
-Arquivo de histórico para validação
+- Entrega do código + formulário: **24/11/2025**  
+- Apresentação oral: **26/11/2025**
 
-🎤 Apresentação do Trabalho
+---
 
-Durante a apresentação (7–10 min), vamos demonstrar:
+## Autores
 
-1️⃣ Funcionamento do programa
-
-Com exemplos reais de conversões e cálculos.
-
-2️⃣ Justificativa das decisões técnicas
-
-Por que usamos:
-
-Structs
-
-Vetor dinâmico
-
-Arquivos binários
-
-Modularização
-
-Ponteiros
-
-3️⃣ Papel da IA
-
-Exemplos claros do que foi criado com IA com supervisão humana vs. implementações próprias.
-
-4️⃣ Domínio do código
-
-Explicando trechos específicos e respondendo perguntas dos professores.
-
-📅 Prazos
-
-Entrega do código + formulário: até 24/11/2025
-
-Apresentação oral: 26/11/2025
-
-👥 Autores
-
-Murilo Aba
-Murilo Rosa de Paula
+- Murilo Aba  
+- Murilo Rosa de Paula
